@@ -80,20 +80,20 @@ Brevita/
 
 ---
 
-## ⚜️ Credits & Author
+## ⚜️ Design & Engineering
 
 <div align="center">
 
 ### **Lucky Bodar**
-*Concept, Architecture & Design*
+*Creator, Lead Architect & Designer*
 
-[![GitHub](https://img.shields.io/badge/GitHub-lucky2729-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/lucky2729)
+<br>
 
-> *"Conceived, architected, and brought to life with a passion for world culinary gastronomy, single-origin roasteries, and modern glassmorphic web aesthetics."*
+*“Conceived, architected, and brought to life with a passion for world culinary gastronomy, single-origin roasteries, and modern glassmorphic web aesthetics.”*
 
 </div>
 
 ---
 
 ## 📄 License
-MIT License © 2026 **Lucky Bodar** & Brevita Roasters. All rights reserved.
+MIT License © 2026 **Lucky Bodar**. All rights reserved.
