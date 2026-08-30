@@ -226,16 +226,9 @@ function renderMenuGrid(items) {
     card.className = 'menu-card';
     card.dataset.id = item.id;
     
-    const fallbackMap = {
-      'signature-coffees': 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Tazzina_di_caff%C3%A8_espresso_e_chicchi_di_caff%C3%A8.jpg',
-      'teas-infusions': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Matcha_Scoop.jpg/800px-Matcha_Scoop.jpg',
-      'specialty-beverages': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Horchata_de_chufa_2.jpg/800px-Horchata_de_chufa_2.jpg',
-      'cheesecakes': 'https://upload.wikimedia.org/wikipedia/commons/e/ea/Baked_cheesecake_with_raspberries_and_blueberries.jpg',
-      'desserts': 'https://upload.wikimedia.org/wikipedia/commons/5/58/Tiramisu_-_Raffaele_Diomede.jpg',
-      'ice-cream-sundaes': 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Delicious_Gelato_on_display.jpg'
-    };
-    const defaultImg = fallbackMap[item.category] || 'https://upload.wikimedia.org/wikipedia/commons/3/33/Espaguetis_carbonara.jpg';
-    const imgSrc = item.image || defaultImg;
+    const localImg = `images/dishes/${item.id}.jpg`;
+    const cdnImg = `https://raw.githubusercontent.com/lucky2729/Brevita/main/public/images/dishes/${item.id}.jpg`;
+    const fallbackFood = 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800&auto=format&fit=crop&q=80';
     
     const isVeg = (item.dietary || 'veg').toLowerCase() === 'veg';
     const catName = categoryMeta[item.category]?.name || item.category;
@@ -245,7 +238,13 @@ function renderMenuGrid(items) {
 
     card.innerHTML = `
       <div class="menu-card-img-wrap">
-        <img src="${imgSrc}" alt="${item.name}" loading="lazy" class="menu-card-img" onerror="if(this.src!=='${defaultImg}')this.src='${defaultImg}';">
+        <img 
+          src="${localImg}" 
+          alt="${item.name}" 
+          loading="lazy" 
+          class="menu-card-img" 
+          onerror="if(this.src!=='${cdnImg}'){this.src='${cdnImg}';}else{this.src='${fallbackFood}';}"
+        >
         <div class="menu-card-img-gradient"></div>
         <span class="menu-card-category-tag">${catName}</span>
         <span class="menu-card-cuisine-tag">${cuisineLabel}</span>

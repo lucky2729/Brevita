@@ -64,10 +64,19 @@ export async function showItemDetail(itemId) {
       dietaryEl.innerHTML = `<span class="dietary-symbol ${isVeg ? 'veg' : 'non-veg'}"></span> ${isVeg ? 'Pure Veg' : 'Non-Veg'}`;
     }
 
-    const defaultImg = 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800&auto=format&fit=crop&q=80';
+    const localImg = `images/dishes/${item.id}.jpg`;
+    const cdnImg = `https://raw.githubusercontent.com/lucky2729/Brevita/main/public/images/dishes/${item.id}.jpg`;
+    const fallbackFood = 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800&auto=format&fit=crop&q=80';
+    
     if (imgEl) {
-      imgEl.src = item.image || defaultImg;
-      imgEl.onerror = () => { imgEl.src = defaultImg; };
+      imgEl.src = localImg;
+      imgEl.onerror = () => {
+        if (imgEl.src !== cdnImg) {
+          imgEl.src = cdnImg;
+        } else {
+          imgEl.src = fallbackFood;
+        }
+      };
     }
 
     // Ingredients pills

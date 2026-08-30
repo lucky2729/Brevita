@@ -90,12 +90,15 @@ function renderCartItems() {
     const itemEl = document.createElement('div');
     itemEl.className = 'cart-item';
     
-    const imgSrc = item.image || defaultImg;
+    const itemId = item.itemId || item.id;
+    const localImg = `images/dishes/${itemId}.jpg`;
+    const cdnImg = `https://raw.githubusercontent.com/lucky2729/Brevita/main/public/images/dishes/${itemId}.jpg`;
+    const fallbackFood = 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800&auto=format&fit=crop&q=80';
 
     const isVeg = (item.dietary || 'veg').toLowerCase() === 'veg';
 
     itemEl.innerHTML = `
-      <img src="${imgSrc}" alt="${item.name}" class="cart-item-img" onerror="this.src='${defaultImg}'">
+      <img src="${localImg}" alt="${item.name}" class="cart-item-img" onerror="if(this.src!=='${cdnImg}'){this.src='${cdnImg}';}else{this.src='${fallbackFood}';}">
       <div class="cart-item-info">
         <h4 class="cart-item-name"><span class="dietary-symbol ${isVeg ? 'veg' : 'non-veg'}" style="margin-right: 4px;"></span>${item.name}</h4>
         <div class="cart-item-qty">

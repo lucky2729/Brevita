@@ -1,3 +1,5 @@
+import { STATIC_MENU_ITEMS } from './menu-data.js';
+
 export function getToken() { return localStorage.getItem('brevita_token'); }
 export function setToken(token) { localStorage.setItem('brevita_token', token); }
 export function clearToken() { localStorage.removeItem('brevita_token'); }
@@ -34,11 +36,40 @@ export async function apiRequest(endpoint, options = {}) {
 }
 
 export const register = (name, phone) => apiRequest('auth/register', { method: 'POST', body: { name, phone } });
-export const login = (phone) => apiRequest('auth/login', { method: 'POST', body: { phone } });
+export const login = (phone, name) => apiRequest('auth/login', { method: 'POST', body: { phone, name } });
 export const getProfile = () => apiRequest('auth/profile');
-export const getMenuItems = (category) => apiRequest(`menu${category && category !== 'all' ? `?category=${category}` : ''}`);
-export const getMenuItem = (id) => apiRequest(`menu/${id}`);
-export const getItemPairings = (id) => apiRequest(`menu/${id}/pairings`);
+
+export async function getMenuItems(category) {
+  try {
+    const data = await apiRequest(`menu${category && category !== 'all' ? `?category=${category}` : ''}`);
+    if (Array.isArray(data) && data.length > 0) return data;
+  } catch (e) {
+    console.log('Serving from embedded static menu dataset.');
+  }
+  if (category && category !== 'all') {
+    return STATIC_MENU_ITEMS.filter(i => i.category === category);
+  }
+  return STATIC_MENU_ITEMS;
+}
+
+export async function getMenuItem(id) {
+  try {
+    const data = await apiRequest(`menu/${id}`);
+    if (data && data.id) return data;
+  } catch (e) {}
+  return STATIC_MENU_ITEMS.find(i => i.id === id) || null;
+}
+
+export async function getItemPairings(id) {
+  try {
+    const data = await apiRequest(`menu/${id}/pairings`);
+    if (Array.isArray(data) && data.length > 0) return data;
+  } catch (e) {}
+  const item = STATIC_MENU_ITEMS.find(i => i.id === id);
+  if (!item || !item.pairs_with) return [];
+  return STATIC_MENU_ITEMS.filter(i => item.pairs_with.includes(i.id));
+}
+
 export const getCart = () => apiRequest('cart');
 export const addToCart = (itemId, quantity) => apiRequest('cart', { method: 'POST', body: { itemId, quantity } });
 export const updateCartItem = (id, quantity) => apiRequest(`cart/${id}`, { method: 'PUT', body: { quantity } });

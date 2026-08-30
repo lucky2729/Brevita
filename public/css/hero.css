@@ -323,55 +323,133 @@
 
 @media (max-width: 768px) {
   #navbar {
-    padding: 0.65rem 1rem;
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
   }
 
   .nav-left .brand-mark {
-    font-size: 1.3rem;
-    letter-spacing: 0.15em;
+    font-size: 1.2rem;
+    letter-spacing: 0.12em;
   }
 
   .nav-center {
     display: flex;
-    padding: 0 0.5rem;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.3rem;
+    min-width: 0;
   }
 
   .nav-greeting-title {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 48vw;
   }
 
   .nav-greeting-subtitle {
     display: none;
   }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
   .nav-auth-btn {
-    padding: 0.4rem 0.7rem;
+    padding: 0.38rem 0.65rem;
     font-size: 0.72rem;
   }
 
   #hero-section {
-    padding: 4.8rem 4vw 2rem;
+    padding: 4.6rem 3.5vw 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.2rem;
   }
 
   .hero-story {
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.2rem;
+    width: 100%;
   }
 
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+
+  .hero-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .hero-actions {
+    display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 0.65rem;
   }
 
   .hero-actions button {
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+  }
+
+  .hero-highlights {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
   }
 
   .highlight-card {
-    flex: 1 1 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #navbar {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .nav-left .brand-mark {
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-greeting-title {
+    font-size: 0.8rem;
+    max-width: 42vw;
+  }
+
+  .nav-auth-btn span:last-child {
+    display: none;
+  }
+  
+  .nav-auth-btn {
+    padding: 0.35rem 0.5rem;
   }
 }
