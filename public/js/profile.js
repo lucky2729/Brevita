@@ -62,6 +62,10 @@ export async function openAuthModal() {
   if (user && user.name && user.name !== 'Guest') {
     loggedInView.style.display = 'block';
     loginFormView.style.display = 'none';
+    const nameEl = document.getElementById('auth-user-name');
+    const phoneEl = document.getElementById('auth-user-phone');
+    if (nameEl) nameEl.textContent = `Welcome back, ${user.name}`;
+    if (phoneEl) phoneEl.textContent = `📱 ${user.phone || 'Member'}`;
     loadRecentOrders();
   } else {
     loggedInView.style.display = 'none';
