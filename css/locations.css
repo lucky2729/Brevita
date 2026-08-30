@@ -1,0 +1,118 @@
+/* ============================================
+   LOCATIONS SECTION
+   ============================================ */
+
+#locations-section {
+  position: relative;
+  z-index: 10;
+  background: var(--bg-secondary);
+  padding: 6rem 4vw;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+}
+
+.location-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 20px rgba(212, 175, 55, 0.05);
+}
+
+.location-card:hover::before {
+  opacity: 1;
+}
+
+.location-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.location-city {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--gold-accent);
+  margin-bottom: 0.25rem;
+  font-weight: 400;
+}
+
+.location-country {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.location-address {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.location-hours {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  opacity: 0.8;
+}
+
+.location-directions {
+  color: var(--gold-accent);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.25s ease;
+}
+
+.location-directions:hover {
+  gap: 0.7rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  #locations-section {
+    padding: 4rem 3vw;
+  }
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+}
