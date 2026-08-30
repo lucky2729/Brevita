@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREVITA — Where Every Sip & Dish Tells a Global Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger/+esm"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/intro.css">
+  <link rel="stylesheet" href="/css/hero.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/checkout.css">
+  <link rel="stylesheet" href="/css/support.css">
+  <link rel="stylesheet" href="/css/locations.css">
+</head>
+<body>
+  <div class="grain-overlay"></div>
+  <div class="cinematic-vignette"></div>
+
+  <section id="intro-screen">
+    <div class="intro-container">
+      <div class="intro-logo">
+        <h1>BREVITA</h1>
+        <p>Where Every Sip & Dish Tells a Global Story</p>
+      </div>
+      <div class="intro-form glass-panel">
+        <div class="form-group">
+          <label for="user-name">Your Name</label>
+          <input type="text" id="user-name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="user-phone">Mobile Number</label>
+          <input type="tel" id="user-phone" placeholder="+1 (xxx) xxx-xxxx">
+        </div>
+        <button id="enter-btn" class="btn-gold">Enter the Experience →</button>
+        <p id="intro-error" class="error-text"></p>
+      </div>
+    </div>
+  </section>
+
+  <div id="main-app" style="display:none;">
+    <video id="bg-video" src="/video/espresso_pouring.mp4" autoplay loop muted playsinline></video>
+    <div class="video-overlay"></div>
+
+    <nav id="navbar">
+      <div class="nav-left">
+        <span class="brand-mark">BREVITA</span>
+      </div>
+      <div class="nav-center">
+        <span id="nav-greeting-text" class="nav-greeting-title">Hi, Guest! Good Afternoon 🌤️</span>
+      </div>
+      <div class="nav-right">
+        <button id="explore-menu-btn" class="btn-outline">Explore Menu</button>
+        <button id="nav-auth-btn" class="nav-auth-btn">
+          <i data-lucide="user"></i>
+          <span id="nav-user-label">Account</span>
+        </button>
+        <button id="cart-btn" class="nav-icon-btn" aria-label="Shopping Cart">
+          <i data-lucide="shopping-cart"></i>
+          <span id="cart-count" class="cart-badge">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <section id="hero-section">
+      <div class="hero-container">
+        <div class="hero-story glass-panel">
+          <span class="badge" id="hero-chapter-badge">Chapter 01 — Terroir</span>
+          <h1 class="hero-title" id="hero-chapter-title">Single Origin Geisha</h1>
+          <p class="hero-desc" id="hero-chapter-desc">Cultivated at high altitudes in the Ethiopian highlands, every bean encapsulates the essence of its volcanic soil. Sun-dried and meticulously selected to absolute perfection.</p>
+          
+          <div class="chapter-pills">
+            <button class="chapter-pill active" data-chapter="0">01 Terroir</button>
+            <button class="chapter-pill" data-chapter="1">02 Precision</button>
+            <button class="chapter-pill" data-chapter="2">03 Pressure</button>
+            <button class="chapter-pill" data-chapter="3">04 Masterpiece</button>
+          </div>
+
+          <div class="hero-actions">
+            <button id="hero-explore-btn" class="btn-gold">Explore The Grand Menu ↓</button>
+            <button id="hero-takeaway-btn" class="btn-outline">Quick Order</button>
+          </div>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="highlight-card glass-panel">
+            <span class="highlight-number">10+</span>
+            <span class="highlight-label">World Cuisines (Japan, Turkey, Korea, Italy, France, USA & more)</span>
+          </div>
+          <div class="highlight-card glass-panel">
+            <span class="highlight-number">100%</span>
+            <span class="highlight-label">Single Origin Arabica & 9-Bar Extraction</span>
+          </div>
+          <div class="highlight-card glass-panel">
+            <span class="highlight-number">70+</span>
+            <span class="highlight-label">Authentic Dishes with High-Res Photos</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-scroll-indicator" id="hero-scroll-btn">
+        <span>Scroll to Explore The Menu</span>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </section>
+
+    <section id="menu-section">
+      <div class="section-header">
+        <span class="badge">Worldwide Gastronomy & Coffee Roastery</span>
+        <h2 class="section-title">The Grand Menu</h2>
+        <p class="section-subtitle">A global tour of artisanal coffees, legendary cheesecakes, and world-renowned cuisines from Japan, Turkey, Korea, Italy, France, India, Mexico, the Middle East, and California.</p>
+      </div>
+
+      <!-- Live Search Box -->
+      <div class="menu-search-wrapper">
+        <div class="search-box glass-panel">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="menu-search-input" placeholder="Search dishes, coffees, cheesecakes, calories, or ingredients (e.g. 'Matcha', 'Baklava', 'Carbonara', 'Wagyu', 'Cheesecake')...">
+          <button id="clear-search-btn" class="clear-search" style="display:none;">×</button>
+        </div>
+      </div>
+
+      <!-- Global Cuisine / Country Filters -->
+      <div class="menu-cuisine-wrapper">
+        <span class="filter-label">Explore by World Cuisine:</span>
+        <div class="menu-cuisine-tabs" id="cuisine-tabs">
+          <button class="cuisine-tab active" data-cuisine="all">🌍 All Cuisines</button>
+          <button class="cuisine-tab" data-cuisine="Japan">🇯🇵 Japan</button>
+          <button class="cuisine-tab" data-cuisine="Turkey">🇹🇷 Turkey</button>
+          <button class="cuisine-tab" data-cuisine="Korea">🇰🇷 Korea</button>
+          <button class="cuisine-tab" data-cuisine="Italy">🇮🇹 Italy</button>
+          <button class="cuisine-tab" data-cuisine="France">🇫🇷 France</button>
+          <button class="cuisine-tab" data-cuisine="Mexico & Spain">🇲🇽 Mexico & Spain</button>
+          <button class="cuisine-tab" data-cuisine="India">🇮🇳 India</button>
+          <button class="cuisine-tab" data-cuisine="Middle East">🇱🇧 Middle East</button>
+          <button class="cuisine-tab" data-cuisine="USA">🇺🇸 USA & Cheesecakes</button>
+        </div>
+      </div>
+
+      <!-- Course Group Tabs -->
+      <div class="menu-group-tabs">
+        <button class="group-tab active" data-group="all">🍽️ All Menu Items</button>
+        <button class="group-tab" data-group="beverages">☕ Coffees & Beverages</button>
+        <button class="group-tab" data-group="food">🥗 Starters, Pasta & Mains</button>
+        <button class="group-tab" data-group="desserts">🍰 Cheesecakes & Global Desserts</button>
+      </div>
+
+      <!-- Dietary Preference Tabs (Veg / Non-Veg) -->
+      <div class="menu-dietary-wrapper">
+        <div class="menu-dietary-tabs" id="dietary-tabs">
+          <button class="dietary-tab active" data-dietary="all">All Dishes</button>
+          <button class="dietary-tab" data-dietary="veg"><span class="dietary-symbol veg"></span> Pure Veg</button>
+          <button class="dietary-tab" data-dietary="non-veg"><span class="dietary-symbol non-veg"></span> Non-Veg</button>
+        </div>
+      </div>
+
+      <!-- Specific Subcategory Tabs -->
+      <div id="category-tabs" class="category-tabs">
+        <button class="category-tab active" data-category="all">All Items</button>
+      </div>
+
+      <div class="menu-stats-bar">
+        <span id="menu-count-text">Showing all items</span>
+      </div>
+
+      <div id="menu-grid" class="menu-grid"></div>
+    </section>
+
+    <!-- Item Detail Modal with Real-life High-Def Photo -->
+    <div id="item-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-content glass-panel">
+        <button class="modal-close" id="modal-close-btn">×</button>
+        <div class="modal-img-container">
+          <img id="modal-img" src="" alt="Dish" class="modal-img">
+          <div class="modal-img-overlay"></div>
+          <span class="modal-category-badge" id="modal-category">Signature</span>
+          <span class="modal-cuisine-badge" id="modal-cuisine">Japan</span>
+          <span class="modal-dietary-badge" id="modal-dietary-badge"><span class="dietary-symbol veg"></span> Veg</span>
+        </div>
+        <div class="modal-body">
+          <div class="modal-header-row">
+            <h2 id="modal-item-name">Item Name</h2>
+            <span class="price-tag" id="modal-price">$0.00</span>
+          </div>
+          <p id="modal-item-desc">Item Description</p>
+          
+          <div class="modal-details-grid">
+            <div class="modal-section">
+              <h4 class="modal-section-title">Ingredients</h4>
+              <div id="modal-ingredients" class="ingredients-list"></div>
+            </div>
+            
+            <div class="modal-section">
+              <h4 class="modal-section-title">Nutritional Meta</h4>
+              <div class="modal-meta">
+                <span class="calorie-badge">🔥 <span id="modal-cal">0</span> cal</span>
+                <span class="portion-badge" id="modal-dietary">Chef's Global Choice</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="modal-pairings-section" class="modal-section" style="display:none;">
+            <h4 class="modal-section-title">Chef's Recommended Pairing</h4>
+            <div id="modal-pairings" class="pairings-list"></div>
+          </div>
+
+          <div class="modal-footer-row">
+            <div class="quantity-control">
+              <button class="qty-btn" id="modal-qty-minus">-</button>
+              <span id="modal-qty">1</span>
+              <button class="qty-btn" id="modal-qty-plus">+</button>
+            </div>
+            <button id="modal-add-btn" class="btn-gold">Add to Cart • <span id="modal-total-btn-price">$0.00</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login / Account Modal -->
+    <div id="auth-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-content glass-panel auth-modal-content">
+        <button class="modal-close" id="auth-modal-close-btn">×</button>
+        <div class="auth-modal-body">
+          <!-- Logged-in Profile View -->
+          <div id="auth-logged-in-view" style="display:none;">
+            <div class="auth-avatar-large" id="auth-avatar-large">B</div>
+            <h3 id="auth-user-name" class="auth-title">Welcome Back</h3>
+            <p id="auth-user-phone" class="auth-user-phone"></p>
+            
+            <div class="auth-orders-section">
+              <h4>Your Recent Orders</h4>
+              <div id="auth-orders-list" class="auth-orders-list"></div>
+            </div>
+            
+            <div class="auth-modal-actions">
+              <button id="auth-switch-btn" class="btn-outline">Switch / New Account</button>
+              <button id="auth-logout-btn" class="btn-gold">Log Out</button>
+            </div>
+          </div>
+
+          <!-- Sign In / Register View -->
+          <div id="auth-login-form-view">
+            <h3 class="auth-title">Account Access</h3>
+            <p class="auth-sub">Sign in or register to manage your orders and personalized dining experience.</p>
+            <div class="form-group">
+              <label for="auth-input-name">Your Full Name</label>
+              <input type="text" id="auth-input-name" placeholder="e.g. Lucy Vance">
+            </div>
+            <div class="form-group">
+              <label for="auth-input-phone">Mobile Number</label>
+              <input type="tel" id="auth-input-phone" placeholder="e.g. +1 555-0199">
+            </div>
+            <button id="auth-submit-btn" class="btn-gold" style="width:100%; margin-top:1.2rem;">Sign In / Continue →</button>
+            <p id="auth-error-msg" class="error-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cart-drawer" class="cart-drawer">
+      <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button id="cart-close">×</button>
+      </div>
+      <div id="cart-items" class="cart-items-list"></div>
+      <div id="cart-suggestions" class="suggestions-section">
+        <h4>Perfect Pairings</h4>
+        <div class="suggestions-scroll"></div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <button id="checkout-btn" class="btn-gold">Proceed to Checkout →</button>
+      </div>
+    </div>
+
+    <section id="checkout-section" style="display:none;">
+      <div class="checkout-container glass-panel">
+        <h2>Order Summary</h2>
+        <div id="billing-details"></div>
+        <div class="order-type-section">
+          <h3>How would you like it?</h3>
+          <div class="type-options">
+            <div class="type-card" data-type="dine-in">
+              <span class="type-card-icon">🍽️</span>
+              <span class="type-card-label">Dine In</span>
+              <span class="type-card-desc">Served tableside</span>
+            </div>
+            <div class="type-card" data-type="takeaway">
+              <span class="type-card-icon">🛍️</span>
+              <span class="type-card-label">Takeaway</span>
+              <span class="type-card-desc">Freshly packaged</span>
+            </div>
+          </div>
+        </div>
+        <div class="payment-section">
+          <h3>Payment Method</h3>
+          <div class="payment-options">
+            <div class="payment-card" data-method="card">
+              <span class="payment-card-icon">💳</span>
+              <span class="payment-card-label">Credit Card</span>
+            </div>
+            <div class="payment-card" data-method="upi">
+              <span class="payment-card-icon">📱</span>
+              <span class="payment-card-label">UPI / Digital</span>
+            </div>
+            <div class="payment-card" data-method="cash">
+              <span class="payment-card-icon">💵</span>
+              <span class="payment-card-label">Cash at Counter</span>
+            </div>
+          </div>
+        </div>
+        <button id="place-order-btn" class="btn-gold">Place Order →</button>
+      </div>
+    </section>
+
+    <section id="order-confirmation" style="display:none;">
+      <div class="confirmation-container">
+        <div class="checkmark-circle">✔️</div>
+        <h2>Order Placed Successfully!</h2>
+        <p id="order-number">Order #0000</p>
+        <p id="order-eta">Your order will be ready in approximately 15-20 minutes</p>
+        <div id="order-summary-mini"></div>
+        <button id="back-to-menu-btn" class="btn-outline">Back to The Menu</button>
+      </div>
+    </section>
+
+    <section id="locations-section">
+      <div class="section-header">
+        <span class="badge">Our Worldwide Flagships</span>
+        <h2 class="section-title">Find Brevita Around the Globe</h2>
+      </div>
+      <div id="locations-grid" class="locations-grid"></div>
+    </section>
+
+    <footer id="support-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>BREVITA</h3>
+          <p>Where Every Sip & Dish Tells a Global Story. Crafted for culinary connoisseurs worldwide.</p>
+        </div>
+        <div class="footer-contact">
+          <p>📍 Beverly Hills • Ginza Tokyo • Mayfair London • Istanbul</p>
+          <p>📞 +1 (800) 555-BREVITA</p>
+          <p>✉️ concierge@brevitacafe.com</p>
+        </div>
+        <div class="footer-links">
+          <a href="#hero-section">Experience</a>
+          <a href="#menu-section">Worldwide Menu</a>
+          <a href="#locations-section">Locations</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 BREVITA Luxury Cafe & Worldwide Roastery. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Floating Chat Widget -->
+    <div id="chat-widget" class="chat-widget">
+      <button id="chat-toggle" class="chat-toggle-btn" aria-label="Customer Support">
+        <i data-lucide="message-circle"></i>
+      </button>
+      <div id="chat-panel" class="chat-panel">
+        <div class="chat-header">
+          <span>Brevita Concierge</span>
+          <button id="chat-close">×</button>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-quick-actions">
+          <button class="quick-action-btn">Track Order</button>
+          <button class="quick-action-btn">Cancel Order</button>
+          <button class="quick-action-btn">Modify Order</button>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Ask our concierge...">
+          <button id="chat-send">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

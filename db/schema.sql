@@ -1,0 +1,54 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  phone TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS menu_items (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  cuisine TEXT NOT NULL DEFAULT 'Global',
+  dietary TEXT NOT NULL DEFAULT 'veg',
+  price REAL NOT NULL,
+  description TEXT NOT NULL,
+  ingredients TEXT NOT NULL DEFAULT '[]',
+  calories INTEGER NOT NULL DEFAULT 0,
+  emoji TEXT DEFAULT '☕',
+  image TEXT DEFAULT '',
+  tags TEXT NOT NULL DEFAULT '[]',
+  pairs_with TEXT NOT NULL DEFAULT '[]'
+);
+
+CREATE TABLE IF NOT EXISTS cart_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  item_id TEXT NOT NULL REFERENCES menu_items(id),
+  quantity INTEGER NOT NULL DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  order_number TEXT NOT NULL UNIQUE,
+  items TEXT NOT NULL,
+  subtotal REAL NOT NULL,
+  cgst REAL NOT NULL,
+  sgst REAL NOT NULL,
+  total REAL NOT NULL,
+  type TEXT NOT NULL CHECK(type IN ('dine-in', 'takeaway')),
+  payment_method TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'confirmed',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS support_messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  message TEXT NOT NULL,
+  sender TEXT NOT NULL CHECK(sender IN ('user', 'bot')),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
