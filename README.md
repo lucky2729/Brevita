@@ -50,85 +50,50 @@
 
 ---
 
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Node.js (v18 or higher)
-- npm
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/YOUR_USERNAME/Brevita.git
-cd Brevita
-```
-
-### 2. Install Dependencies
-```bash
-npm install
-```
-
-### 3. Seed the Database
-Populate SQLite database with all 86 gourmet dishes, ingredients, calories, prices, and verified culinary photos:
-```bash
-npm run seed
-```
-
-### 4. Start the Server
-```bash
-npm start
-```
-
-### 5. Open in Browser
-Visit **[http://localhost:3000](http://localhost:3000)** to experience Brevita.
-
----
-
 ## 📁 Project Structure
 
 ```
 Brevita/
-├── db/
+├── db/                       # Relational database schemas & seeding
 │   ├── schema.sql            # SQLite database table definitions
 │   └── seed.js               # Seed script for 86 worldwide dishes
-├── middleware/
+├── middleware/               # Security & JWT authorization
 │   └── auth.js               # JWT authentication middleware
-├── routes/
+├── routes/                   # RESTful API endpoints
 │   ├── auth.js               # Registration, login, profile endpoints
 │   ├── menu.js               # Menu query and pairing recommendations
 │   ├── cart.js               # Cart items, suggestions & calculations
 │   ├── orders.js             # Order placement, status & history
 │   └── support.js            # Customer concierge message handling
-├── public/
-│   ├── css/
-│   │   ├── base.css          # Design system, variables & resets
-│   │   ├── hero.css          # Top navbar, hero story & highlights
-│   │   ├── menu.css          # Menu grid, search, cuisine & dietary tabs
-│   │   ├── cart.css          # Sliding glass cart drawer
-│   │   ├── checkout.css      # Checkout flow & confirmation receipt
-│   │   ├── support.css       # Concierge chat widget
-│   │   └── locations.css     # Global roastery flagship cards
-│   ├── js/
-│   │   ├── app.js            # Main application bootstrap
-│   │   ├── api.js            # API client wrapper
-│   │   ├── greeting.js       # Dynamic header greeting
-│   │   ├── menu.js           # Multi-dimensional filtering & search
-│   │   ├── item-detail.js    # Dish modal details & pairings
-│   │   ├── cart.js           # Cart state & drawer manager
-│   │   ├── checkout.js       # Checkout form & order dispatcher
-│   │   ├── profile.js        # Account dashboard & order history
-│   │   ├── support.js        # Concierge chatbot
-│   │   └── locations.js      # Global roastery locations
-│   ├── images/
-│   │   └── dishes/           # 86 local high-resolution food photos
-│   ├── video/
-│   │   └── espresso_pouring.mp4 # Cinematic background video
-│   └── index.html            # Main single-page application entry
+├── public/                   # Frontend client assets
+│   ├── css/                  # Glassmorphic modular stylesheets
+│   ├── js/                   # ES6 modules for UI, state & animations
+│   ├── images/dishes/        # 86 authentic high-res culinary photos
+│   ├── video/                # Cinematic background video
+│   └── index.html            # Single-page application entry point
+├── scripts/                  # Data ingestion & image utilities
+├── tests/                    # End-to-end Playwright test suites
 ├── server.js                 # Express application entry point
-├── package.json              # Project scripts and dependencies
+├── package.json              # Project dependencies & scripts
 └── README.md                 # Project documentation
 ```
 
 ---
 
+## ⚜️ Credits & Author
+
+<div align="center">
+
+### **Lucky Bodar**
+*Concept, Architecture & Design*
+
+[![GitHub](https://img.shields.io/badge/GitHub-lucky2729-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/lucky2729)
+
+> *"Conceived, architected, and brought to life with a passion for world culinary gastronomy, single-origin roasteries, and modern glassmorphic web aesthetics."*
+
+</div>
+
+---
+
 ## 📄 License
-MIT License © 2026 Brevita Roasters & Cafe. All rights reserved.
+MIT License © 2026 **Lucky Bodar** & Brevita Roasters. All rights reserved.
