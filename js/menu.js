@@ -160,7 +160,8 @@ function applyFiltersAndRender() {
 
   // Filter by World Cuisine
   if (currentCuisine !== 'all') {
-    filtered = filtered.filter(item => item.cuisine === currentCuisine);
+    const targetCuisines = currentCuisine.split(',').map(c => c.trim().toLowerCase());
+    filtered = filtered.filter(item => targetCuisines.includes((item.cuisine || '').toLowerCase()));
   }
 
   // Filter by Dietary Preference (Veg / Non-Veg)
