@@ -954,20 +954,35 @@
   .menu-dietary-tabs,
   .category-tabs {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.4rem 0;
+    gap: 0.5rem;
+    padding: 0.4rem 0 0.8rem 0; /* Add bottom padding for scrollbar */
+    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+    margin-left: -3vw; /* Pull out of section padding */
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+
+  /* Hide scrollbar for tabs */
+  .menu-group-tabs::-webkit-scrollbar,
+  .menu-cuisine-tabs::-webkit-scrollbar,
+  .menu-dietary-tabs::-webkit-scrollbar,
+  .category-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .group-tab,
   .cuisine-tab,
   .dietary-tab,
   .category-tab {
-    padding: 0.42rem 0.85rem;
-    font-size: 0.75rem;
-    flex: 0 1 auto;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.78rem;
+    flex: 0 0 auto; /* Prevent shrinking */
+    white-space: nowrap;
   }
 
   .menu-search-wrapper {
